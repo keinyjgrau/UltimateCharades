@@ -1,0 +1,22 @@
+[
+  {
+    "id": "base_en",
+    "title": "Base (English)",
+    "language": "en",
+    "categories": ["General"],
+    "cards": ["Spider-Man", "Batman", "Taylor Swift"]
+  },
+  {
+    "id": "kids_en",
+    "title": "Kis (English)",
+    "language": "en",
+    "categories": ["Kids"],
+    "cards": ["Lion", "Ice cream", "School bus"]
+  },
+  {
+    "id": "base_es",
+    "title": "Base (Español)",
+    "language": "es",
+    "cards": ["Bad Bunny", "El Yunque", "Café con leche"]
+  }
+]
