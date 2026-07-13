@@ -308,7 +308,11 @@ struct MainMenuView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: UIStyle.smallCardCornerRadius, style: .continuous)
-                    .fill(isSelected ? Color.green.opacity(0.10) : .thinMaterial)
+                    .fill(
+                        isSelected
+                        ? AnyShapeStyle(Color.green.opacity(0.10))
+                        : AnyShapeStyle(.thinMaterial)
+                    )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: UIStyle.smallCardCornerRadius, style: .continuous)
