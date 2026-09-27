@@ -21,6 +21,7 @@
 		D5A8034D2F37C95400C9BB9F /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A8034C2F37C95400C9BB9F /* AppFlow.swift */; };
 		D5A803512F37CCA100C9BB9F /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A803502F37CCA100C9BB9F /* ResultsView.swift */; };
 		D5B379B92F39297B001875A1 /* PackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B379B82F39297B001875A1 /* PackStore.swift */; };
+		D5E83EB83068C3B80005AA5F /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E83EB73068C3B80005AA5F /* AppInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		D5A8034C2F37C95400C9BB9F /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		D5A803502F37CCA100C9BB9F /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		D5B379B82F39297B001875A1 /* PackStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStore.swift; sourceTree = "<group>"; };
+		D5E83EB73068C3B80005AA5F /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -134,6 +136,7 @@
 		D5A803402F37A88D00C9BB9F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D5E83EB73068C3B80005AA5F /* AppInfoView.swift */,
 				D5A803422F37A90000C9BB9F /* BootView.swift */,
 				D5A803442F37AB2900C9BB9F /* MainMenuView.swift */,
 				D5A803462F37ABA200C9BB9F /* GameplayView.swift */,
@@ -230,6 +233,7 @@
 				D5A8034D2F37C95400C9BB9F /* AppFlow.swift in Sources */,
 				D56357C42F4B8EE3009EDE0A /* HomeView.swift in Sources */,
 				D5097D1E2F41683600F84140 /* TiltMotionManager.swift in Sources */,
+				D5E83EB83068C3B80005AA5F /* AppInfoView.swift in Sources */,
 				D5B379B92F39297B001875A1 /* PackStore.swift in Sources */,
 				D5A803472F37ABA200C9BB9F /* GameplayView.swift in Sources */,
 				D5A803432F37A90000C9BB9F /* BootView.swift in Sources */,
