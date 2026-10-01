@@ -90,8 +90,8 @@ struct HomeView: View {
                 alignment: .leading
             )
 
-            principalCard
-                .frame(maxWidth: 430)
+            principalCardCompact
+                .frame(maxWidth: 410)
         }
         .padding(.horizontal, 40)
         .padding(.vertical, 28)
@@ -326,6 +326,136 @@ struct HomeView: View {
         )
     }
 
+    private var principalCardCompact: some View {
+        VStack(spacing: 14) {
+
+            VStack(spacing: 2) {
+                Text("READY TO PLAY?")
+                    .font(
+                        .system(
+                            size: 20,
+                            weight: .bold,
+                            design: .rounded
+                        )
+                    )
+
+                Text("Your current game")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            HStack(spacing: 8) {
+
+                gameStat(
+                    value: "\(app.roundSeconds)s",
+                    label: "Timer",
+                    icon: "timer"
+                )
+
+                compactDivider
+
+                gameStat(
+                    value: app.isTeamsMode ? "Teams" : "FFA",
+                    label: "Mode",
+                    icon: "person.2.fill"
+                )
+
+                compactDivider
+
+                gameStat(
+                    value: "\(selectedPackCount())",
+                    label: "Packs",
+                    icon: "square.stack.3d.up.fill"
+                )
+            }
+            .padding(.vertical, 2)
+
+            Button {
+                hapticPlayTap()
+                startGameNow()
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "play.fill")
+
+                    Text("Play")
+                        .font(
+                            .system(
+                                size: 21,
+                                weight: .bold,
+                                design: .rounded
+                            )
+                        )
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: UIStyle.primaryButtonHeight)
+            }
+            .buttonStyle(.borderedProminent)
+
+            Divider()
+
+            HStack(spacing: 12) {
+
+                compactHomeActionButton(
+                    title: "Settings",
+                    systemImage: "gearshape.fill"
+                ) {
+                    withAnimation(.easeInOut(duration: UIStyle.standardAnimation)) {
+                        app.flow = .menu
+                    }
+                }
+
+                compactHomeActionButton(
+                    title: "App Info",
+                    systemImage: "info.circle.fill"
+                ) {
+                    withAnimation(.easeInOut(duration: UIStyle.standardAnimation)) {
+                        app.flow = .info
+                    }
+                }
+            }
+        }
+        .padding(18)
+        .background(
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(.regularMaterial)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .stroke(.white.opacity(0.18), lineWidth: 1)
+        )
+        .shadow(
+            color: .black.opacity(0.24),
+            radius: 22,
+            x: 0,
+            y: 12
+        )
+    }
+    
+    private var compactDivider: some View {
+        Rectangle()
+            .fill(.secondary.opacity(0.18))
+            .frame(width: 1, height: 44)
+    }
+
+    private func compactHomeActionButton(
+        title: String,
+        systemImage: String,
+        action: @escaping () -> Void
+    ) -> some View {
+
+        Button(action: action) {
+            VStack(spacing: 5) {
+                Image(systemName: systemImage)
+                    .font(.headline)
+
+                Text(title)
+                    .font(.caption.bold())
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 54)
+        }
+        .buttonStyle(.bordered)
+    }
     // MARK: - Game Stat
 
     private func gameStat(
