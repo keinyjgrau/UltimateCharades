@@ -5,7 +5,6 @@
 //  Created by Keiny.Grau.a1 on 2026-02-22.
 //
 
-
 import SwiftUI
 import UIKit
 
@@ -77,13 +76,16 @@ struct HomeView: View {
                 alignment: .leading,
                 spacing: 14
             ) {
+
                 appTitleLandscape
 
                 Text(
                     "Act it. Guess it. Laugh about it."
                 )
                 .font(.headline)
-                .foregroundStyle(.white.opacity(0.80))
+                .foregroundStyle(
+                    .white.opacity(0.80)
+                )
             }
             .frame(
                 maxWidth: .infinity,
@@ -94,10 +96,10 @@ struct HomeView: View {
                 .frame(maxWidth: 410)
         }
         .padding(.horizontal, 40)
-        .padding(.vertical, 28)
+        .padding(.vertical, 24)
         .frame(
             maxWidth: .infinity,
-            minHeight: 350
+            minHeight: 330
         )
     }
 
@@ -106,9 +108,11 @@ struct HomeView: View {
     private var appTitle: some View {
         VStack(spacing: 8) {
 
-            Image(systemName: "theatermasks.fill")
-                .font(.system(size: 44))
-                .foregroundStyle(.yellow)
+            Image(
+                systemName: "theatermasks.fill"
+            )
+            .font(.system(size: 44))
+            .foregroundStyle(.yellow)
 
             Text("ULTIMATE")
                 .font(
@@ -132,7 +136,9 @@ struct HomeView: View {
 
             Text("Quick party game")
                 .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.82))
+                .foregroundStyle(
+                    .white.opacity(0.82)
+                )
         }
         .multilineTextAlignment(.center)
     }
@@ -145,8 +151,11 @@ struct HomeView: View {
 
             HStack(spacing: 10) {
 
-                Image(systemName: "theatermasks.fill")
-                    .foregroundStyle(.yellow)
+                Image(
+                    systemName:
+                        "theatermasks.fill"
+                )
+                .foregroundStyle(.yellow)
 
                 Text("ULTIMATE")
                     .foregroundStyle(.white)
@@ -171,12 +180,13 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Main Card
+    // MARK: - Portrait Main Card
 
     private var principalCard: some View {
         VStack(spacing: 18) {
 
             VStack(spacing: 4) {
+
                 Text("READY TO PLAY?")
                     .font(
                         .system(
@@ -191,8 +201,6 @@ struct HomeView: View {
                     .foregroundStyle(.secondary)
             }
 
-            // Current settings
-
             HStack(spacing: 8) {
 
                 gameStat(
@@ -204,7 +212,8 @@ struct HomeView: View {
                 divider
 
                 gameStat(
-                    value: app.isTeamsMode
+                    value:
+                        app.isTeamsMode
                         ? "Teams"
                         : "FFA",
                     label: "Mode",
@@ -214,14 +223,14 @@ struct HomeView: View {
                 divider
 
                 gameStat(
-                    value: "\(selectedPackCount())",
+                    value:
+                        "\(selectedPackCount())",
                     label: "Packs",
-                    icon: "square.stack.3d.up.fill"
+                    icon:
+                        "square.stack.3d.up.fill"
                 )
             }
             .padding(.vertical, 6)
-
-            // Main Play button
 
             Button {
                 hapticPlayTap()
@@ -229,6 +238,7 @@ struct HomeView: View {
             } label: {
 
                 HStack(spacing: 12) {
+
                     Image(systemName: "play.fill")
 
                     Text("Play")
@@ -243,12 +253,15 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity)
                 .frame(
                     height:
-                        UIStyle.primaryButtonHeight + 8
+                        UIStyle.primaryButtonHeight
+                        + 8
                 )
             }
             .buttonStyle(.borderedProminent)
             .scaleEffect(
-                playPulse ? 1.02 : 1.0
+                playPulse
+                ? 1.02
+                : 1.0
             )
             .animation(
                 .easeInOut(duration: 1.6)
@@ -260,18 +273,19 @@ struct HomeView: View {
 
             Divider()
 
-            // Secondary destinations
-
             HStack(spacing: 14) {
 
                 homeActionButton(
                     title: "Settings",
-                    systemImage: "gearshape.fill"
+                    systemImage:
+                        "gearshape.fill"
                 ) {
+
                     withAnimation(
                         .easeInOut(
                             duration:
-                                UIStyle.standardAnimation
+                                UIStyle
+                                    .standardAnimation
                         )
                     ) {
                         app.flow = .menu
@@ -280,12 +294,15 @@ struct HomeView: View {
 
                 homeActionButton(
                     title: "App Info",
-                    systemImage: "info.circle.fill"
+                    systemImage:
+                        "info.circle.fill"
                 ) {
+
                     withAnimation(
                         .easeInOut(
                             duration:
-                                UIStyle.standardAnimation
+                                UIStyle
+                                    .standardAnimation
                         )
                     ) {
                         app.flow = .info
@@ -297,7 +314,9 @@ struct HomeView: View {
                 Text(toast)
                     .font(.caption)
                     .foregroundStyle(.red)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(
+                        .center
+                    )
             }
         }
         .padding(22)
@@ -308,16 +327,14 @@ struct HomeView: View {
             )
             .fill(.regularMaterial)
         )
-        .overlay(
-            RoundedRectangle(
-                cornerRadius: 28,
-                style: .continuous
+
+        // NEW ANIMATED BORDER
+        .overlay {
+            AnimatedCardBorder(
+                cornerRadius: 28
             )
-            .stroke(
-                .white.opacity(0.18),
-                lineWidth: 1
-            )
-        )
+        }
+
         .shadow(
             color: .black.opacity(0.24),
             radius: 22,
@@ -326,10 +343,13 @@ struct HomeView: View {
         )
     }
 
+    // MARK: - Compact Landscape Card
+
     private var principalCardCompact: some View {
         VStack(spacing: 14) {
 
             VStack(spacing: 2) {
+
                 Text("READY TO PLAY?")
                     .font(
                         .system(
@@ -355,7 +375,10 @@ struct HomeView: View {
                 compactDivider
 
                 gameStat(
-                    value: app.isTeamsMode ? "Teams" : "FFA",
+                    value:
+                        app.isTeamsMode
+                        ? "Teams"
+                        : "FFA",
                     label: "Mode",
                     icon: "person.2.fill"
                 )
@@ -363,9 +386,11 @@ struct HomeView: View {
                 compactDivider
 
                 gameStat(
-                    value: "\(selectedPackCount())",
+                    value:
+                        "\(selectedPackCount())",
                     label: "Packs",
-                    icon: "square.stack.3d.up.fill"
+                    icon:
+                        "square.stack.3d.up.fill"
                 )
             }
             .padding(.vertical, 2)
@@ -374,7 +399,9 @@ struct HomeView: View {
                 hapticPlayTap()
                 startGameNow()
             } label: {
+
                 HStack(spacing: 10) {
+
                     Image(systemName: "play.fill")
 
                     Text("Play")
@@ -387,7 +414,11 @@ struct HomeView: View {
                         )
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: UIStyle.primaryButtonHeight)
+                .frame(
+                    height:
+                        UIStyle
+                            .primaryButtonHeight
+                )
             }
             .buttonStyle(.borderedProminent)
 
@@ -397,32 +428,64 @@ struct HomeView: View {
 
                 compactHomeActionButton(
                     title: "Settings",
-                    systemImage: "gearshape.fill"
+                    systemImage:
+                        "gearshape.fill"
                 ) {
-                    withAnimation(.easeInOut(duration: UIStyle.standardAnimation)) {
+
+                    withAnimation(
+                        .easeInOut(
+                            duration:
+                                UIStyle
+                                    .standardAnimation
+                        )
+                    ) {
                         app.flow = .menu
                     }
                 }
 
                 compactHomeActionButton(
                     title: "App Info",
-                    systemImage: "info.circle.fill"
+                    systemImage:
+                        "info.circle.fill"
                 ) {
-                    withAnimation(.easeInOut(duration: UIStyle.standardAnimation)) {
+
+                    withAnimation(
+                        .easeInOut(
+                            duration:
+                                UIStyle
+                                    .standardAnimation
+                        )
+                    ) {
                         app.flow = .info
                     }
                 }
             }
+
+            if let toast {
+                Text(toast)
+                    .font(.caption)
+                    .foregroundStyle(.red)
+                    .multilineTextAlignment(
+                        .center
+                    )
+            }
         }
         .padding(18)
         .background(
-            RoundedRectangle(cornerRadius: 26, style: .continuous)
-                .fill(.regularMaterial)
+            RoundedRectangle(
+                cornerRadius: 26,
+                style: .continuous
+            )
+            .fill(.regularMaterial)
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 26, style: .continuous)
-                .stroke(.white.opacity(0.18), lineWidth: 1)
-        )
+
+        // NEW ANIMATED BORDER
+        .overlay {
+            AnimatedCardBorder(
+                cornerRadius: 26
+            )
+        }
+
         .shadow(
             color: .black.opacity(0.24),
             radius: 22,
@@ -430,32 +493,7 @@ struct HomeView: View {
             y: 12
         )
     }
-    
-    private var compactDivider: some View {
-        Rectangle()
-            .fill(.secondary.opacity(0.18))
-            .frame(width: 1, height: 44)
-    }
 
-    private func compactHomeActionButton(
-        title: String,
-        systemImage: String,
-        action: @escaping () -> Void
-    ) -> some View {
-
-        Button(action: action) {
-            VStack(spacing: 5) {
-                Image(systemName: systemImage)
-                    .font(.headline)
-
-                Text(title)
-                    .font(.caption.bold())
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 54)
-        }
-        .buttonStyle(.bordered)
-    }
     // MARK: - Game Stat
 
     private func gameStat(
@@ -483,11 +521,27 @@ struct HomeView: View {
 
     private var divider: some View {
         Rectangle()
-            .fill(.secondary.opacity(0.18))
-            .frame(width: 1, height: 52)
+            .fill(
+                .secondary.opacity(0.18)
+            )
+            .frame(
+                width: 1,
+                height: 52
+            )
     }
 
-    // MARK: - Secondary Buttons
+    private var compactDivider: some View {
+        Rectangle()
+            .fill(
+                .secondary.opacity(0.18)
+            )
+            .frame(
+                width: 1,
+                height: 44
+            )
+    }
+
+    // MARK: - Home Buttons
 
     private func homeActionButton(
         title: String,
@@ -499,14 +553,40 @@ struct HomeView: View {
 
             VStack(spacing: 7) {
 
-                Image(systemName: systemImage)
-                    .font(.title3)
+                Image(
+                    systemName: systemImage
+                )
+                .font(.title3)
 
                 Text(title)
                     .font(.caption.bold())
             }
             .frame(maxWidth: .infinity)
             .frame(height: 64)
+        }
+        .buttonStyle(.bordered)
+    }
+
+    private func compactHomeActionButton(
+        title: String,
+        systemImage: String,
+        action: @escaping () -> Void
+    ) -> some View {
+
+        Button(action: action) {
+
+            VStack(spacing: 5) {
+
+                Image(
+                    systemName: systemImage
+                )
+                .font(.headline)
+
+                Text(title)
+                    .font(.caption.bold())
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 54)
         }
         .buttonStyle(.bordered)
     }
@@ -526,7 +606,7 @@ struct HomeView: View {
         .ignoresSafeArea()
     }
 
-    // Decorative card shapes
+    // MARK: - Decorative Background
 
     private var decorativeCards: some View {
         ZStack {
@@ -535,19 +615,39 @@ struct HomeView: View {
                 cornerRadius: 28,
                 style: .continuous
             )
-            .fill(.white.opacity(0.055))
-            .frame(width: 230, height: 310)
-            .rotationEffect(.degrees(-18))
-            .offset(x: -160, y: -230)
+            .fill(
+                .white.opacity(0.055)
+            )
+            .frame(
+                width: 230,
+                height: 310
+            )
+            .rotationEffect(
+                .degrees(-18)
+            )
+            .offset(
+                x: -160,
+                y: -230
+            )
 
             RoundedRectangle(
                 cornerRadius: 28,
                 style: .continuous
             )
-            .fill(.yellow.opacity(0.06))
-            .frame(width: 220, height: 300)
-            .rotationEffect(.degrees(16))
-            .offset(x: 170, y: 240)
+            .fill(
+                .yellow.opacity(0.06)
+            )
+            .frame(
+                width: 220,
+                height: 300
+            )
+            .rotationEffect(
+                .degrees(16)
+            )
+            .offset(
+                x: 170,
+                y: 240
+            )
 
             Image(systemName: "questionmark")
                 .font(
@@ -559,7 +659,10 @@ struct HomeView: View {
                 .foregroundStyle(
                     .white.opacity(0.025)
                 )
-                .offset(x: 130, y: -180)
+                .offset(
+                    x: 130,
+                    y: -180
+                )
         }
         .allowsHitTesting(false)
     }
@@ -567,39 +670,54 @@ struct HomeView: View {
     // MARK: - Logic
 
     private func selectedPackCount() -> Int {
+
         let selected =
             app.packs.filter {
-                app.selectdPackIds.contains($0.id)
+                app.selectdPackIds.contains(
+                    $0.id
+                )
             }
 
-        return selected.isEmpty
+        return
+            selected.isEmpty
             ? app.packs.count
             : selected.count
     }
 
     private func startGameNow() {
+
+        toast = nil
+
         app.loadPacksIfNeeded()
 
         let selected =
             app.packs.filter {
-                app.selectdPackIds.contains($0.id)
+                app.selectdPackIds.contains(
+                    $0.id
+                )
             }
 
         let packsToUse =
             selected.isEmpty
-                ? app.packs
-                : selected
+            ? app.packs
+            : selected
 
         let words =
-            packsToUse.flatMap { $0.cards }
+            packsToUse.flatMap {
+                $0.cards
+            }
 
         guard !words.isEmpty else {
+
             toast =
                 "No cards are available. Open Settings and select at least one pack."
+
             return
         }
 
-        let vm = GameVM(app: app)
+        let vm =
+            GameVM(app: app)
+
         vm.setDeck(words)
 
         app.game = vm
@@ -617,18 +735,119 @@ struct HomeView: View {
     // MARK: - Haptic
 
     private func hapticPlayTap() {
+
         guard app.hapticsIdx != 0 else {
             return
         }
 
         if app.hapticsIdx == 2 {
+
             UINotificationFeedbackGenerator()
-                .notificationOccurred(.success)
+                .notificationOccurred(
+                    .success
+                )
+
         } else {
+
             UIImpactFeedbackGenerator(
                 style: .light
             )
             .impactOccurred()
         }
+    }
+}
+
+// MARK: - Animated Light Border
+
+private struct AnimatedCardBorder: View {
+
+    let cornerRadius: CGFloat
+
+    var body: some View {
+
+        TimelineView(.animation) { timeline in
+
+            let time =
+                timeline.date
+                    .timeIntervalSinceReferenceDate
+
+            let cycleDuration = 6.0
+
+            let progress =
+                time.truncatingRemainder(
+                    dividingBy: cycleDuration
+                ) / cycleDuration
+
+            let rotation =
+                progress * 360.0
+
+            let pulse =
+                (sin(time * 2.0) + 1.0)
+                / 2.0
+
+            ZStack {
+
+                // Permanent subtle edge
+                RoundedRectangle(
+                    cornerRadius:
+                        cornerRadius,
+                    style: .continuous
+                )
+                .stroke(
+                    Color.white.opacity(0.12),
+                    lineWidth: 1
+                )
+
+                // Moving ray
+                RoundedRectangle(
+                    cornerRadius:
+                        cornerRadius,
+                    style: .continuous
+                )
+                .stroke(
+                    AngularGradient(
+                        gradient: Gradient(
+                            colors: [
+                                .clear,
+                                .clear,
+                                .clear,
+                                Color.cyan.opacity(0.12),
+                                Color.white.opacity(
+                                    0.50
+                                    + (pulse * 0.35)
+                                ),
+                                Color.cyan.opacity(
+                                    0.45
+                                    + (pulse * 0.25)
+                                ),
+                                Color.white.opacity(0.15),
+                                .clear,
+                                .clear,
+                                .clear
+                            ]
+                        ),
+                        center: .center,
+                        startAngle:
+                            .degrees(rotation),
+                        endAngle:
+                            .degrees(
+                                rotation + 360
+                            )
+                    ),
+                    lineWidth: 2.5
+                )
+                .shadow(
+                    color:
+                        Color.cyan.opacity(
+                            0.08
+                            + (pulse * 0.22)
+                        ),
+                    radius:
+                        5
+                        + (pulse * 10)
+                )
+            }
+        }
+        .allowsHitTesting(false)
     }
 }

@@ -86,3 +86,35 @@ struct InfoChip: View {
         .background(.thinMaterial, in: Capsule())
     }
 }
+
+// MARK: - Back Arrow
+
+struct BackArrowButton: View {
+
+    let action: () -> Void
+
+    var body: some View {
+
+        Button(action: action) {
+
+            Image(
+                systemName: "chevron.left"
+            )
+            .font(
+                .system(
+                    size: 18,
+                    weight: .bold
+                )
+            )
+            .frame(
+                width: 42,
+                height: 42
+            )
+            .contentShape(Circle())
+        }
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.circle)
+        .controlSize(.regular)
+        .accessibilityLabel("Back")
+    }
+}
